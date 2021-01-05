@@ -1,0 +1,14 @@
+* {
+	box-sizing: border-box;
+}
+body {
+	margin: 0;
+}
+.palette {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: 100px;
+}
+.palette-color {
+	border: 1px solid;
+}
