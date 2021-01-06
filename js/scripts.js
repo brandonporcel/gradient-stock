@@ -2,13 +2,8 @@ const d = document;
 const $canvas = d.getElementById('canvas');
 const $ctx = $canvas.getContext('2d');
 const $rangeInput = d.getElementById('range-input');
-const handleRangeInput = () => {
-	console.log($rangeInput.value);
-};
 const images = [];
-const renderImages = (index) => {
-	$ctx.drawImage(images[index], 0, 0, $canvas.width, $canvas.height);
-};
+
 const getImages = () => {
 	for (let i = 1; i <= 36; i += 1) {
 		const number = `0${i}`.slice(-2);
@@ -18,12 +13,19 @@ const getImages = () => {
 		// meter un alt con banderas
 		// images.push(eachImage);
 		images[i] = eachImage;
-		console.log(url);
 		if (i === 1) {
-			renderImages(i);
+			$ctx.drawImage(images[i], 0, 0, $canvas.width, $canvas.height);
 		}
 	}
 };
 
-$rangeInput.addEventListener('input', handleRangeInput);
+$rangeInput.addEventListener('input', () => {
+	$ctx.drawImage(
+		images[$rangeInput.value],
+		0,
+		0,
+		$canvas.width,
+		$canvas.height
+	);
+});
 d.addEventListener('DOMContentLoaded', getImages);
