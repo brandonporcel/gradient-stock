@@ -56,8 +56,3 @@ main {
 	position: relative;
 	z-index: 5;
 }
-canvas {
-	border: 1px solid;
-	height: 368px;
-	width: 568px;
-}
