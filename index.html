@@ -5,13 +5,34 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Gradient Stock</title>
 		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="css/normalize.css" />
 		<link rel="stylesheet" href="css/styles.css" />
 	</head>
 	<body>
-		<div class="palette">
-			<div class="palette-color primary"></div>
-			<div class="palette-color secondy"></div>
-			<div class="palette-color tertiary"></div>
+		<div class="container">
+			<span class="gradient"></span>
+			<header class="palette">
+				<div class="primary"></div>
+				<div class="secondary"></div>
+				<div class="tertiary"></div>
+			</header>
+			<main>
+				<a href="pages/details.html">
+					<p>do you want see another snekaer?</p>
+				</a>
+				<canvas></canvas>
+				<form id="form">
+					<input
+						type="range"
+						name="range"
+						min="1"
+						max="36"
+						step="1"
+						value="1"
+						id="form-range"
+					/>
+				</form>
+			</main>
 		</div>
 		<script src="js/scripts.js"></script>
 	</body>
