@@ -33,8 +33,8 @@ body:hover .palette {
 	bottom: 0;
 	opacity: 0;
 	background: linear-gradient(var(--primary), transparent),
-		linear-gradient(90deg, var(--secondary), transparent),
-		linear-gradient(-90deg, var(--tertiary), transparent);
+		linear-gradient(-90deg, var(--tertiary), transparent),
+		linear-gradient(90deg, var(--secondary), transparent);
 	transition: all 0.5s ease-in;
 }
 .palette {

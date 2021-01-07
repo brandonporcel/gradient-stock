@@ -38,10 +38,7 @@ const setProperties = (colors) => {
 		'--primary',
 		`rgb(${colors[0].red},${colors[0].green},${colors[0].blue})`
 	);
-	d.body.style.setProperty(
-		'--secondary',
-		`rgb(${colors[1].red},${colors[1].green},${colors[1].blue}`
-	);
+	d.body.style.setProperty('--secondary', 'black');
 	d.body.style.setProperty('--tertiary', 'red');
 };
 const getImages = () => {
