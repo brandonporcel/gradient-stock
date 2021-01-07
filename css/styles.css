@@ -4,9 +4,9 @@
 body {
 	margin: 0;
 	overflow-y: hidden;
-	--primary: none;
-	--secondary: none;
-	--tertiary: none;
+	--primary: red;
+	--secondary: blue;
+	--tertiary: green;
 }
 body:hover .gradient,
 body:hover .palette {
@@ -31,10 +31,10 @@ body:hover .palette {
 	left: 0;
 	right: 0;
 	bottom: 0;
+	opacity: 0;
 	background: linear-gradient(var(--primary), transparent),
 		linear-gradient(90deg, var(--secondary), transparent),
 		linear-gradient(-90deg, var(--tertiary), transparent);
-	opacity: 0;
 	transition: all 0.5s ease-in;
 }
 .palette {
