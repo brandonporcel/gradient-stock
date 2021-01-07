@@ -4,23 +4,24 @@
 body {
 	margin: 0;
 	overflow-y: hidden;
-	--primary: red;
-	--secondary: blue;
-	--tertiary: green;
-}
-body:hover .gradient,
-body:hover .palette {
-	opacity: 1;
+	--primary: none;
+	--secondary: none;
+	--tertiary: none;
 }
 .color {
-	width: 50px;
-	height: 50px;
-	background-color: red;
+	width: 75px;
+	height: 75px;
+	background: linear-gradient(var(--primary), transparent),
+		linear-gradient(-90deg, var(--tertiary), transparent),
+		linear-gradient(90deg, var(--secondary), transparent);
 	position: fixed;
 	cursor: pointer;
 	z-index: 9;
 }
-
+.color-black {
+	background: black;
+	border: 3px solid white;
+}
 .container {
 	position: relative;
 	z-index: 3;
@@ -64,4 +65,7 @@ main {
 	justify-content: space-evenly;
 	position: relative;
 	z-index: 5;
+}
+.opacity-on {
+	opacity: 1;
 }
