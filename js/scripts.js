@@ -5,7 +5,8 @@ const $otherShoeForm = d.getElementById('other-shoe-form');
 const $canvas = d.getElementById('canvas');
 const $ctx = $canvas.getContext('2d');
 const $rangeInput = d.getElementById('range-input');
-const images = [];
+let images = [];
+const imagess = [];
 const renderImages = (index) => {
 	$ctx.drawImage(images[index], 0, 0, $canvas.width, $canvas.height);
 };
@@ -14,8 +15,9 @@ const handleRangeInput = () => {
 };
 const getOtherShoe = (e) => {
 	e.preventDefault();
+	images = [];
 	for (let i = 1; i <= 36; i += 1) {
-		const imagess = [];
+		$ctx.clearRect(0, 0, $canvas.width, $canvas.height);
 		const number = 'img' + `0${i}`.slice(-2);
 		const url = $otherShoeForm.urlInput.value;
 		const newUrl = url.replace(/img\d\d/gi, number);
@@ -24,8 +26,9 @@ const getOtherShoe = (e) => {
 		image.src = newUrl;
 		imagess[i] = image;
 		if (i === 1) {
-			$ctx.clearRect(0, 0, $canvas.width, $canvas.height);
-			renderImages(i);
+			imagess[i].addEventListener('load', () => {
+				$ctx.drawImage(imagess[i], 0, 0, $canvas.width, $canvas.height);
+			});
 		}
 	}
 };
