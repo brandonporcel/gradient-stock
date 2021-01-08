@@ -1,3 +1,6 @@
+import { getUrl } from './details.js';
+
+console.log(getUrl());
 const d = document;
 const $colorBtn = d.getElementById('add-color');
 const $canvas = d.getElementById('canvas');
