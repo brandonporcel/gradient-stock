@@ -10,6 +10,12 @@
 	</head>
 	<body>
 		<div id="add-color" class="color"></div>
+		<small
+			>by
+			<a href="https://github.com/brandonporcel" target="_blank"
+				>brandon porcel</a
+			></small
+		>
 		<div class="container">
 			<span class="gradient"></span>
 			<header class="palette">
@@ -19,8 +25,12 @@
 			</header>
 			<main>
 				<a href="pages/details.html">
-					<p>do you want see another snekaer?</p>
+					<p>do you want to see another sneaker?</p>
 				</a>
+				<form id="other-shoe-form">
+					<input type="url" placeholder="read the link above" name="urlInput" />
+					<input id="other-shoe" type="submit" value="Submit" />
+				</form>
 				<canvas id="canvas" height="368px" width="568px"></canvas>
 				<input
 					type="range"
@@ -32,6 +42,6 @@
 				/>
 			</main>
 		</div>
-		<script type="module" src="js/scripts.js"></script>
+		<script src="js/scripts.js"></script>
 	</body>
 </html>
