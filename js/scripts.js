@@ -65,6 +65,8 @@ const getImages = (url, imggg) => {
 		imggg[i] = eachImage;
 		if (i === 1) {
 			imggg[1].addEventListener('load', () => {
+				$otherShoeForm.urlInput.value = '';
+				$otherShoeForm.urlInput.focus();
 				renderImages(i, imggg);
 				const colors = getColorPalette();
 				setProperties(colors);
