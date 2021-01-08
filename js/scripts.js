@@ -1,25 +1,25 @@
 const d = document;
 const $colorBtn = d.getElementById('add-color');
 const $otherShoeForm = d.getElementById('other-shoe-form');
-
 const $canvas = d.getElementById('canvas');
 const $ctx = $canvas.getContext('2d');
 const $rangeInput = d.getElementById('range-input');
 let images = [];
-const imagess = [];
-const renderImages = (index) => {
-	$ctx.drawImage(images[index], 0, 0, $canvas.width, $canvas.height);
+const otherImages = [];
+const renderImages = (index, img) => {
+	$ctx.drawImage(img[index], 0, 0, $canvas.width, $canvas.height);
 };
-const renderImagess = (index) => {
-	$ctx.drawImage(imagess[index], 0, 0, $canvas.width, $canvas.height);
+const handleRangeInput = () => {
+	renderImages($rangeInput.value, images);
+	renderImages($rangeInput.value, otherImages);
 };
 
-const handleRangeInput = () => {
-	renderImages($rangeInput.value);
-};
-const handleRangeInputt = () => {
-	renderImagess($rangeInput.value);
-};
+// const renderOtherImages = (index) => {
+// 	$ctx.drawImage(otherImages[index], 0, 0, $canvas.width, $canvas.height);
+// };
+// const handleRangeInputt = () => {
+// 	renderImages($rangeInput.value, otherImages);
+// };
 
 const getOtherShoe = (e) => {
 	e.preventDefault();
@@ -32,10 +32,10 @@ const getOtherShoe = (e) => {
 		const image = new Image();
 		image.crossOrigin = 'anonymous';
 		image.src = newUrl;
-		imagess[i] = image;
+		otherImages[i] = image;
 		if (i === 1) {
-			imagess[i].addEventListener('load', () => {
-				renderImagess(i);
+			otherImages[i].addEventListener('load', () => {
+				renderImages(i, otherImages);
 			});
 		}
 	}
@@ -88,7 +88,7 @@ const getImages = () => {
 		images[i] = eachImage;
 		if (i === 1) {
 			images[1].addEventListener('load', () => {
-				renderImages(i);
+				renderImages(i, images);
 				const colors = getColorPalette();
 				setProperties(colors);
 			});
@@ -98,7 +98,7 @@ const getImages = () => {
 
 d.addEventListener('DOMContentLoaded', getImages);
 $rangeInput.addEventListener('input', handleRangeInput);
-$rangeInput.addEventListener('change', handleRangeInputt);
+// $rangeInput.addEventListener('change', handleRangeInputt);
 $otherShoeForm.addEventListener('submit', getOtherShoe);
 
 $colorBtn.addEventListener('click', () => {
