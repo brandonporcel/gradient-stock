@@ -17,30 +17,6 @@ const handleRangeInput = () => {
 		renderImages($rangeInput.value, otherImages);
 	}
 };
-
-const getOtherShoe = (e) => {
-	if (checkSubmit === false) {
-		e.preventDefault();
-		images = [];
-		for (let i = 1; i <= 36; i += 1) {
-			$ctx.clearRect(0, 0, $canvas.width, $canvas.height);
-			const number = `0${i}`.slice(-2);
-			const url = $otherShoeForm.urlInput.value;
-			const newUrl = url.replace('img01', `img${number}`);
-			const image = new Image();
-			image.crossOrigin = 'anonymous';
-			image.src = newUrl;
-			otherImages[i] = image;
-			if (i === 1) {
-				otherImages[i].addEventListener('load', () => {
-					renderImages(i, otherImages);
-				});
-			}
-		}
-	}
-	checkSubmit = true;
-};
-
 const getColorPalette = () => {
 	// Uint8ClampedArray depende del tamaño del canvas,cuando ma grande,mayou la cantidad
 	// data: Uint8ClampedArray(1744896)
@@ -78,28 +54,37 @@ const setProperties = (colors) => {
 		`rgb(${colors[300].red},${colors[300].green},${colors[300].blue})`
 	);
 };
-const getImages = (url) => {
+const getImages = (url, imggg) => {
 	for (let i = 1; i <= 36; i += 1) {
 		const number = `0${i}`.slice(-2);
 		const newUrl = url.replace('img01', `img${number}`);
 		const eachImage = new Image();
 		eachImage.src = newUrl;
 		eachImage.crossOrigin = 'anonymous';
-		images[i] = eachImage;
+		imggg[i] = eachImage;
 		if (i === 1) {
-			images[1].addEventListener('load', () => {
-				renderImages(i, images);
+			imggg[1].addEventListener('load', () => {
+				renderImages(i, imggg);
 				const colors = getColorPalette();
 				setProperties(colors);
 			});
 		}
 	}
 };
+const getOtherShoe = (e) => {
+	if (checkSubmit === false) {
+		e.preventDefault();
+		images = [];
+		getImages($otherShoeForm.urlInput.value, otherImages);
+	}
+	checkSubmit = true;
+};
 
 d.addEventListener(
 	'DOMContentLoaded',
 	getImages(
-		'https://stockx-360.imgix.net/Air-Jordan-1-Mid-Banned-2020/Images/Air-Jordan-1-Mid-Banned-2020/Lv2/img01.jpg?auto=format,compress&q=90&updated_at=1606326136&w=1000'
+		'https://stockx-360.imgix.net/Air-Jordan-1-Mid-Banned-2020/Images/Air-Jordan-1-Mid-Banned-2020/Lv2/img01.jpg?auto=format,compress&q=90&updated_at=1606326136&w=1000',
+		images
 	)
 );
 $rangeInput.addEventListener('input', handleRangeInput);
