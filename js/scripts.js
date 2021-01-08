@@ -10,24 +10,32 @@ const imagess = [];
 const renderImages = (index) => {
 	$ctx.drawImage(images[index], 0, 0, $canvas.width, $canvas.height);
 };
+const renderImagess = (index) => {
+	$ctx.drawImage(imagess[index], 0, 0, $canvas.width, $canvas.height);
+};
+
 const handleRangeInput = () => {
 	renderImages($rangeInput.value);
 };
+const handleRangeInputt = () => {
+	renderImagess($rangeInput.value);
+};
+
 const getOtherShoe = (e) => {
 	e.preventDefault();
 	images = [];
 	for (let i = 1; i <= 36; i += 1) {
 		$ctx.clearRect(0, 0, $canvas.width, $canvas.height);
-		const number = 'img' + `0${i}`.slice(-2);
+		const number = `0${i}`.slice(-2);
 		const url = $otherShoeForm.urlInput.value;
-		const newUrl = url.replace(/img\d\d/gi, number);
+		const newUrl = url.replace('img01', `img${number}`);
 		const image = new Image();
 		image.crossOrigin = 'anonymous';
 		image.src = newUrl;
 		imagess[i] = image;
 		if (i === 1) {
 			imagess[i].addEventListener('load', () => {
-				$ctx.drawImage(imagess[i], 0, 0, $canvas.width, $canvas.height);
+				renderImagess(i);
 			});
 		}
 	}
@@ -90,6 +98,7 @@ const getImages = () => {
 
 d.addEventListener('DOMContentLoaded', getImages);
 $rangeInput.addEventListener('input', handleRangeInput);
+$rangeInput.addEventListener('change', handleRangeInputt);
 $otherShoeForm.addEventListener('submit', getOtherShoe);
 
 $colorBtn.addEventListener('click', () => {
