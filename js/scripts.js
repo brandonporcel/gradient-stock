@@ -18,13 +18,6 @@ const handleRangeInput = () => {
 	}
 };
 
-// const renderOtherImages = (index) => {
-// 	$ctx.drawImage(otherImages[index], 0, 0, $canvas.width, $canvas.height);
-// };
-// const handleRangeInputt = () => {
-// 	renderImages($rangeInput.value, otherImages);
-// };
-
 const getOtherShoe = (e) => {
 	if (checkSubmit === false) {
 		e.preventDefault();
@@ -85,12 +78,12 @@ const setProperties = (colors) => {
 		`rgb(${colors[300].red},${colors[300].green},${colors[300].blue})`
 	);
 };
-const getImages = () => {
+const getImages = (url) => {
 	for (let i = 1; i <= 36; i += 1) {
 		const number = `0${i}`.slice(-2);
-		const url = `https://stockx-360.imgix.net/Air-Jordan-1-Mid-Banned-2020/Images/Air-Jordan-1-Mid-Banned-2020/Lv2/img${number}.jpg?auto=format,compress&q=90&updated_at=1606326136&w=1000`;
+		const newUrl = url.replace('img01', `img${number}`);
 		const eachImage = new Image();
-		eachImage.src = url;
+		eachImage.src = newUrl;
 		eachImage.crossOrigin = 'anonymous';
 		images[i] = eachImage;
 		if (i === 1) {
@@ -103,9 +96,13 @@ const getImages = () => {
 	}
 };
 
-d.addEventListener('DOMContentLoaded', getImages);
+d.addEventListener(
+	'DOMContentLoaded',
+	getImages(
+		'https://stockx-360.imgix.net/Air-Jordan-1-Mid-Banned-2020/Images/Air-Jordan-1-Mid-Banned-2020/Lv2/img01.jpg?auto=format,compress&q=90&updated_at=1606326136&w=1000'
+	)
+);
 $rangeInput.addEventListener('input', handleRangeInput);
-// $rangeInput.addEventListener('change', handleRangeInputt);
 $otherShoeForm.addEventListener('submit', getOtherShoe);
 
 $colorBtn.addEventListener('click', () => {
