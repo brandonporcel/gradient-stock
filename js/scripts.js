@@ -14,6 +14,7 @@ const handleRangeInput = () => {
 	if (checkSubmit === false) {
 		renderImages($rangeInput.value, images);
 	} else {
+		images = [];
 		renderImages($rangeInput.value, otherImages);
 	}
 };
@@ -72,12 +73,12 @@ const getImages = (url, imggg) => {
 	}
 };
 const getOtherShoe = (e) => {
-	if (checkSubmit === false) {
+	checkSubmit = true;
+	if (checkSubmit === true) {
 		e.preventDefault();
 		images = [];
 		getImages($otherShoeForm.urlInput.value, otherImages);
 	}
-	checkSubmit = true;
 };
 
 d.addEventListener(
