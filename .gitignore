@@ -3,7 +3,3 @@ package.json
 .eslintrc.json
 node_modules
 
-firebase.json
-.firebaserc
-.firebase
-404.html
