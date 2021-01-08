@@ -6,12 +6,16 @@ const $ctx = $canvas.getContext('2d');
 const $rangeInput = d.getElementById('range-input');
 let images = [];
 const otherImages = [];
+let checkSubmit = false;
 const renderImages = (index, img) => {
 	$ctx.drawImage(img[index], 0, 0, $canvas.width, $canvas.height);
 };
 const handleRangeInput = () => {
-	renderImages($rangeInput.value, images);
-	renderImages($rangeInput.value, otherImages);
+	if (checkSubmit === false) {
+		renderImages($rangeInput.value, images);
+	} else {
+		renderImages($rangeInput.value, otherImages);
+	}
 };
 
 // const renderOtherImages = (index) => {
@@ -22,23 +26,26 @@ const handleRangeInput = () => {
 // };
 
 const getOtherShoe = (e) => {
-	e.preventDefault();
-	images = [];
-	for (let i = 1; i <= 36; i += 1) {
-		$ctx.clearRect(0, 0, $canvas.width, $canvas.height);
-		const number = `0${i}`.slice(-2);
-		const url = $otherShoeForm.urlInput.value;
-		const newUrl = url.replace('img01', `img${number}`);
-		const image = new Image();
-		image.crossOrigin = 'anonymous';
-		image.src = newUrl;
-		otherImages[i] = image;
-		if (i === 1) {
-			otherImages[i].addEventListener('load', () => {
-				renderImages(i, otherImages);
-			});
+	if (checkSubmit === false) {
+		e.preventDefault();
+		images = [];
+		for (let i = 1; i <= 36; i += 1) {
+			$ctx.clearRect(0, 0, $canvas.width, $canvas.height);
+			const number = `0${i}`.slice(-2);
+			const url = $otherShoeForm.urlInput.value;
+			const newUrl = url.replace('img01', `img${number}`);
+			const image = new Image();
+			image.crossOrigin = 'anonymous';
+			image.src = newUrl;
+			otherImages[i] = image;
+			if (i === 1) {
+				otherImages[i].addEventListener('load', () => {
+					renderImages(i, otherImages);
+				});
+			}
 		}
 	}
+	checkSubmit = true;
 };
 
 const getColorPalette = () => {
